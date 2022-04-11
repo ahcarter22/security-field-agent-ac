@@ -28,25 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
 
         http.authorizeRequests()
-                .antMatchers( HttpMethod.GET, "/api/agency").permitAll()
-                .antMatchers( HttpMethod.GET, "/api/agency/*").permitAll()
-                .antMatchers( HttpMethod.POST, "/api/agency").permitAll()
-                .antMatchers( HttpMethod.DELETE, "/api/agency/*").permitAll()
+
 
                 .antMatchers( HttpMethod.GET, "/api/agent").permitAll()
                 .antMatchers( HttpMethod.GET, "/api/agent/*").permitAll()
                 .antMatchers( HttpMethod.POST, "/api/agent").permitAll()
                 .antMatchers( HttpMethod.DELETE, "/api/agent/*").permitAll()
 
-                .antMatchers( HttpMethod.GET, "/api/agency/agent").permitAll()
-                .antMatchers( HttpMethod.GET, "/api/agency/agent/*").permitAll()
-                .antMatchers( HttpMethod.POST, "/api/agency/agent").permitAll()
-                .antMatchers( HttpMethod.DELETE, "/api/agency/agent/*").permitAll()
-
-                .antMatchers( HttpMethod.GET, "/api/location").permitAll()
-                .antMatchers( HttpMethod.GET, "/api/location*").permitAll()
-                .antMatchers( HttpMethod.POST, "/api/location").permitAll()
-                .antMatchers( HttpMethod.DELETE, "/api/location/*").permitAll()
 
                 // require authentication for any request...
                 .anyRequest().authenticated()

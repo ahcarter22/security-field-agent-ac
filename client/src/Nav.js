@@ -5,25 +5,29 @@ import AuthContext from './AuthContext';
 function Nav() {
     const [user, setUser] = useContext(AuthContext);
 
-    return (
-        <nav>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-
-                {user?.user ? (
-                    <li>Logout {user.user.sub}</li>
-                    // Update with real link later
-                ) : (
+    function handleLogout(){
+        localStorage.removeItem( "token" );
+        setUser( null );
+    }
+        return (
+            <nav>
+                <ul>
                     <li>
-                        <Link to="/login">Login</Link>
+                        <Link to="/">Home</Link>
                     </li>
-                )}
-                
-            </ul>
-        </nav>
-    )
+    
+                    {user?.user ? (
+                        <li><button onClick={handleLogout}>Logout {user.user.sub}</button></li>
+                        // Update with real link later
+                    ) : (
+                        <li>
+                            <Link to="/login">Login</Link>
+                        </li>
+                    )}
+                    
+                </ul>
+            </nav>
+        )
 }
 
 export default Nav;
