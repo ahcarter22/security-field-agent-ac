@@ -1,5 +1,5 @@
 .agent-card {
-  border: 3px green solid;
+  border: 3px blue solid;
   margin-bottom: 15px;
   padding: 25px;
 }
@@ -15,10 +15,4 @@ button {
   padding: 200px;
 }
 
-.dark-mode {
-  background-color: #333;
-}
 
-.light-mode {
-  background-color: #DDD;
-}

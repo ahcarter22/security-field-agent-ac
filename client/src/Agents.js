@@ -6,7 +6,7 @@ function Agents() {
     const [agents, setAgents] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/agents")
+        fetch("http://localhost:8080/api/agent")
         .then(response => {
             if (response.status === 200) {
                 return response.json();
@@ -14,7 +14,7 @@ function Agents() {
                 alert("Something went wrong while fetching...");
             }
             })
-        .then(jsonData => setAgents(jsonData))
+        .then(agentData => setAgents(agentData))
         .catch(rejection => alert("Failure: " + rejection.status + ": " + rejection.statusText));
         }, []);
   
