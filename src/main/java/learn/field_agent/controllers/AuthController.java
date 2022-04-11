@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
-@RequestMapping("/api/security")
+@RequestMapping("/api")
 public class AuthController {
 
     AuthenticationManager authManager;
@@ -37,7 +37,7 @@ public class AuthController {
     public ResponseEntity login(@RequestBody Map<String,String> credentials ){
 
         UsernamePasswordAuthenticationToken token =
-                new UsernamePasswordAuthenticationToken( credentials.get("username"), credentials.get("password") );
+                new UsernamePasswordAuthenticationToken( credentials.get("username"), credentials.get("password_hash") );
 
         try {
             Authentication authResult = authManager.authenticate(token);
