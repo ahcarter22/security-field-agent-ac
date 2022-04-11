@@ -29,11 +29,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 
-
-                .antMatchers( HttpMethod.GET, "/api/agent").permitAll()
-                .antMatchers( HttpMethod.GET, "/api/agent/*").permitAll()
                 .antMatchers( HttpMethod.POST, "/api/agent").permitAll()
-                .antMatchers( HttpMethod.DELETE, "/api/agent/*").permitAll()
+                .antMatchers( HttpMethod.GET, "/api/agent/public").permitAll()
+                .antMatchers( HttpMethod.DELETE, "/api/agent/*").hasAnyRole("AUTHOR", "ADMIN")
+                .antMatchers( HttpMethod.GET, "/api/agent/*" ).authenticated()
+                .antMatchers( HttpMethod.PUT, "/api/agent").authenticated()
+                .antMatchers("/**").denyAll()
+
+
+
 
 
                 // require authentication for any request...
