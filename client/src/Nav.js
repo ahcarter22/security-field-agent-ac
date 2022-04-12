@@ -15,6 +15,12 @@ function Nav() {
                     <li>
                         <Link to="/">Home</Link>
                     </li>
+                    <li>
+                        <Link to="/agents">Show Agents</Link>
+                    </li>
+                    <li>
+                        <Link to="/addAgents">Add Agent</Link>
+                    </li>
     
                     {user?.user ? (
                         <li><button onClick={handleLogout}>Logout {user.user.sub}</button></li>
@@ -23,6 +29,7 @@ function Nav() {
                         <li>
                             <Link to="/login">Login</Link>
                         </li>
+                        
                     )}
                     
                 </ul>

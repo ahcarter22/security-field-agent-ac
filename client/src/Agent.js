@@ -19,18 +19,8 @@ function Agent(props) {
             <p><b>Last Name:</b> {lastName}</p>
             <p><b>DOB:</b> {dob}</p>
             <p><b>Height (in):</b> {heightInInches}</p>
-            { user?.user.sub === username || user?.user.authorities.includes("ROLE_ADMIN") ? (
-                <>
-                <Link to={'/edit/' + agentId} >Edit</Link>
-                <DeleteAgent agentId={agentId} removeFromState={props.removeFromState} /></>
-            ) : (
-                null
-            ) } 
-            <EditAgent 
-                agentObj={props.agentObj} 
-                agents={props.agents}
-                setAgents={props.setAgents}
-            />
+            <Link to={"/deleteAgent/" + agentId} ><button>❌</button></Link>
+            <Link to={"/editAgent/" + agentId} > <button >📝</button></Link>
         </div>
     )
 

@@ -6,7 +6,12 @@ function Agents() {
     const [agents, setAgents] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/agent")
+        fetch("http://localhost:8080/api/agent",
+        {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
         .then(response => {
             if (response.status === 200) {
                 return response.json();

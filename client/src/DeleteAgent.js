@@ -1,4 +1,52 @@
-function DeleteAgent({ agentId, removeFromState }) {
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+function DeleteAgent() {
+    const nav = useNavigate();
+    const{agentId} = useParams();
+
+    const [toDelete, setToDelete] = useState(null);
+
+    useEffect( 
+        () => {
+
+            const jwt = localStorage.getItem( "token" );
+            if( jwt ){
+                
+                fetch( "http://localhost:8080/api/agent/" + agentId,
+                    {
+                        headers: {
+                            Authorization: "Bearer " + jwt
+                        }
+                    }
+                )
+                .then( response => {
+                    if( response.status == 200 ){
+                        return response.json();
+                    } else {
+                        console.log( response );
+                        alert( "retrieving toDelete failed");
+                    }
+                })
+                .then( retrievedAgent => {
+                    console.log( retrievedAgent );
+                    setToDelete( retrievedAgent );
+                })
+                .catch( rejection => {
+                    console.log( rejection );
+                    alert( "something very bad happened...");
+                });
+            } else {
+                nav("/login");
+            }
+        },
+        []
+    );
+
+
+    function handleCancel() {
+        nav("/agents");
+    }
 
     function handleDelete() {
         fetch("http://localhost:8080/api/agent/" + agentId, {
@@ -8,14 +56,33 @@ function DeleteAgent({ agentId, removeFromState }) {
             }
         })
         .then(response => {
-            if (response.status === 200) {
+            if (response.status === 204) {
                 alert("Deleted successfully!");
-                removeFromState(agentId);
+                nav("/agents");
+            } else {
+                console.log(response);
+                alert("Delete unsuccessful.");
             }
         })
+        .catch(
+            rejection => { 
+                console.log("Failure ", rejection);
+                alert("Something really bad happened"); 
+            }
+
+        );
     }
 
-    return <button onClick={handleDelete}>❌</button>
+    return <>
+    { toDelete ?
+    <>
+    <h2>Are you sure you'd like to delete {toDelete.firstName  + " " + toDelete.lastName}?</h2>
+    <button onClick={handleDelete}>❌</button>
+    <button onClick={handleCancel}>Cancel</button>
+    </>
+: <></> }
+    </>
 }
 
 export default DeleteAgent;
+

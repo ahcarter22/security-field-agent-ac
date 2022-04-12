@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
+// RestController annotates spring into dependency
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/api")
+
+// endpoint for authenticating and getting a token
 public class AuthController {
 
     AuthenticationManager authManager;
@@ -37,7 +39,7 @@ public class AuthController {
     public ResponseEntity login(@RequestBody Map<String,String> credentials ){
 
         UsernamePasswordAuthenticationToken token =
-                new UsernamePasswordAuthenticationToken( credentials.get("username"), credentials.get("password_hash") );
+                new UsernamePasswordAuthenticationToken( credentials.get("username"), credentials.get("password") );
 
         try {
             Authentication authResult = authManager.authenticate(token);

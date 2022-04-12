@@ -4,9 +4,12 @@ import AuthContext from "./AuthContext";
 import Home from "./Home";
 import Nav from "./Nav";
 import Login from "./Login";
-import EditTodo from './EditAgent';
+import EditAgent from './EditAgent';
 import jwtDecode from "jwt-decode";
 import NotFound from './NotFound';
+import Agents from './Agents';
+import AddAgent from './AddAgent';
+import DeleteAgent from './DeleteAgent';
 
 function App() {
 
@@ -28,7 +31,10 @@ function App() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/edit/:agentId" element={<EditTodo />} />
+            <Route path="/addAgents" element={<AddAgent />} />
+            <Route path="/agents" element={<Agents />} />
+            <Route path="/deleteAgent/:agentId" element={<DeleteAgent />} />
+            <Route path="/editAgent/:agentId" element={<EditAgent />} />
             <Route path="*" element={<NotFound/>} />
         </Routes>
       </div>

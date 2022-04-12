@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function AddAgent(){
+function AddAgent() {
 
-const [first, setFirst] = useState("");
-const [middle, setMiddle] = useState("");
-const [last, setLast] = useState("");
-const [birthdate, setBirthdate] = useState("");
-const [height, setHeight] = useState(0);
+    const [first, setFirst] = useState("");
+    const [middle, setMiddle] = useState("");
+    const [last, setLast] = useState("");
+    const [birthdate, setBirthdate] = useState("");
+    const [height, setHeight] = useState(0);
 
-const nav = useNavigate();
+    const nav = useNavigate();
 
-    function handleFirst(e){
-        setFirst(e.target.value)        
+    function handleFirst(e) {
+        setFirst(e.target.value)
     }
 
     function handleMiddle(e) {
@@ -32,7 +32,7 @@ const nav = useNavigate();
     }
 
 
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault();
 
         const newAgent = {
@@ -46,43 +46,45 @@ const nav = useNavigate();
         fetch("http://localhost:8080/api/agent", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token")
+
             },
             body: JSON.stringify(newAgent)
         }).then(response => {
-            alert(response.statusText + " agent");
-            nav("/api/agent");
+            alert(" Agent added");
+            nav("/agents");
         })
-        .catch(
-            rejection => console.log("Failure ", rejection)
-        );
+            .catch(
+                rejection => console.log("Failure ", rejection)
+            );
     }
 
 
-    return(
+    return (
         <>
-        <h2>Add a new Agent</h2>
+            <h2>Add a new Agent</h2>
 
-        <form onSubmit={handleSubmit}>
-            <label forHtml="firstName">First Name</label><br />
-            <input onChange={handleFirst} id="firstName"></input><br /><br />
-            
-            <label forHtml="middleName">Middle Initial:</label><br />
-            <input onChange={handleMiddle} id="middleName"></input><br /><br />
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="firstName">First Name</label><br />
+                <input onChange={handleFirst} id="firstName"></input><br /><br />
 
-            <label forHtml="lastName">Last Name:</label><br />
-            <input onChange={handleLast} id="lastName"></input><br /><br />
+                <label htmlFor="middleName">Middle Initial:</label><br />
+                <input onChange={handleMiddle} id="middleName"></input><br /><br />
 
-            <label forHtml="dob">DOB (YYYY-MM-DD):</label><br />
-            <input onChange={handleDOB} id="dob"></input><br /><br />
+                <label htmlFor="lastName">Last Name:</label><br />
+                <input onChange={handleLast} id="lastName"></input><br /><br />
 
-            <label forHtml="heightInInches">Height (inches):</label><br />
-            <input onChange={handleHeight} id="heightInInches"></input><br /><br />
+                <label htmlFor="dob">DOB (YYYY-MM-DD):</label><br />
+                <input onChange={handleDOB} id="dob"></input><br /><br />
 
-            
-            <button type="submit">Submit</button>
-        </form>
-        <hr />
+                <label htmlFor="heightInInches">Height (inches):</label><br />
+                <input onChange={handleHeight} id="heightInInches"></input><br /><br />
+
+
+                <button type="submit">Submit</button>
+            </form>
+            <hr />
         </>
     )
 }
