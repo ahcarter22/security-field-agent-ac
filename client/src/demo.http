@@ -1,0 +1,29 @@
+POST http://localhost:8080/api/login
+Content-Type: application/json
+
+{
+    "username": "john@smith.com",
+    "password":"P@ssw0rd!"
+}
+
+###
+
+GET http://localhost:8080/api/agent
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmaWVsZC1hZ2VudCIsInN1YiI6ImpvaG5Ac21pdGguY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiZXhwIjoxNjQ5Nzc5MjYzfQ.c8C0fQ8onVSxZtQJLQ5ODtlzBKRp1XdrM-ojcYEqvRY
+###
+
+POST http://localhost:8080/api/agent
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmaWVsZC1hZ2VudCIsInN1YiI6ImpvaG5Ac21pdGguY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiZXhwIjoxNjQ5Nzc5MjYzfQ.c8C0fQ8onVSxZtQJLQ5ODtlzBKRp1XdrM-ojcYEqvRY
+
+
+{
+    
+    "firstName": "James",
+    "middleName": "B",
+    "lastName": "Bond",
+    "dob": "1945-12-01",
+    "heightInInches": 72
+    
+}
+
